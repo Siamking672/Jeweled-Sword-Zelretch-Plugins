@@ -1,3 +1,15 @@
+---
+title: AstralModules
+emoji: 📦
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_file: Dockerfile
+pinned: false
+license: gpl-3.0
+python_version: "3.11"
+---
+
 # 📦 AstralModules
 
 > Official plugin repository for [AstralBot](https://github.com/AstralBot/AstralBot).
