@@ -45,7 +45,7 @@ async def tag_logger(client: Client, message: Message):
         f"{message.from_user.mention} **tagged** {client.me.mention} **in** {message.chat.title} (`{message.chat.id}`)",
         disable_web_page_preview=True,
         reply_to_message_id=msg.id,
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Go to Tag 📨", url=message.link)]]),
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Go to Tag", url=message.link)]]),
     )
 
 

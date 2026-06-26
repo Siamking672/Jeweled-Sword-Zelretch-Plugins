@@ -78,5 +78,5 @@ BotHelp("Magi").add(
 ).add("delauth", "Remove a user from authorized magi.").add(
     "authlist", "List all authorized magi."
 ).info(
-    "Magi Registry 🔴"
+    "Magi Registry"
 ).done()

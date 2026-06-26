@@ -6,7 +6,7 @@ from pyrogram.types import Message
 from zelretch.core.config import all_env, os_configs
 from zelretch.functions.paste import spaceBin
 from zelretch.functions.templates import usage_templates
-from zelretch.functions.tools import restart, update_dotenv
+from zelretch.functions.runtime import restart, update_dotenv
 
 from . import Config, HelpMenu, Symbols, db, zelretch, on_message
 

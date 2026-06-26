@@ -31,8 +31,19 @@ def on_message(
 
     def decorator(func):
         async def wrapper(client: Client, message: Message):
-            if client.me.id != message.from_user.id:
-                if not await db.is_master(client.me.id, message.from_user.id):
+            sender = getattr(message, "from_user", None)
+            client_user = getattr(client, "me", None)
+
+            # Channel posts, anonymous-admin messages, service messages, and
+            # some callback/listen updates can arrive without a real from_user.
+            # Userbot commands need a concrete Telegram user id for the
+            # self/master permission check, so ignore those updates instead of
+            # crashing the dispatcher.
+            if sender is None or client_user is None:
+                return
+
+            if client_user.id != sender.id:
+                if not await db.is_master(client_user.id, sender.id):
                     return
 
             if admin_only and not message.chat.type == ChatType.PRIVATE:

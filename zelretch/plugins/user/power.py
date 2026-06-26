@@ -1,5 +1,5 @@
 from zelretch.core import LOGS
-from zelretch.functions.tools import restart, gen_changelogs, initialize_git
+from zelretch.functions.runtime import restart, gen_changelogs, initialize_git
 
 from . import Config, HelpMenu, zelretch, on_message
 

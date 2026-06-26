@@ -29,7 +29,7 @@ async def _MasterUsers() -> None:
     for user in users:
         Config.MASTER_USERS.add(user["user_id"])
 
-    LOGS.info(f"{Symbols.arrow_right * 2} Registered Masters {Symbols.arrow_left * 2}")
+    LOGS.info(f"{Symbols.arrow_right * 2} Registered Bound Masters {Symbols.arrow_left * 2}")
 
 
 async def _GbanUsers() -> None:

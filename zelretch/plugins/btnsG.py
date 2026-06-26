@@ -26,7 +26,6 @@ async def gen_inline_help_buttons(page: int, plugins: list) -> tuple[list, int]:
     buttons = []
     column = await db.get_env(ENV.btn_in_help) or 5
     column = int(column)
-    emoji = await db.get_env(ENV.help_emoji) or "🔴"
     pairs = list(map(list, zip(plugins[::2], plugins[1::2])))
 
     if len(plugins) % 2 == 1:
@@ -40,11 +39,11 @@ async def gen_inline_help_buttons(page: int, plugins: list) -> tuple[list, int]:
         for i, plugin in enumerate(pair):
             if i % 2 == 0:
                 btn_pair.append(
-                    InlineKeyboardButton(f"{emoji} {plugin}", f"help_menu:{page}:{plugin}")
+                    InlineKeyboardButton(plugin, f"help_menu:{page}:{plugin}")
                 )
             else:
                 btn_pair.append(
-                    InlineKeyboardButton(f"{plugin} {emoji}", f"help_menu:{page}:{plugin}")
+                    InlineKeyboardButton(plugin, f"help_menu:{page}:{plugin}")
                 )
         buttons.append(btn_pair)
 
@@ -68,7 +67,6 @@ async def gen_inline_help_buttons(page: int, plugins: list) -> tuple[list, int]:
 async def gen_bot_help_buttons() -> list[list[InlineKeyboardButton]]:
     buttons = []
     plugins = sorted(Config.BOT_CMD_MENU)
-    emoji = await db.get_env(ENV.help_emoji) or "🔴"
     pairs = list(map(list, zip(plugins[::2], plugins[1::2])))
 
     if len(plugins) % 2 == 1:
@@ -79,17 +77,17 @@ async def gen_bot_help_buttons() -> list[list[InlineKeyboardButton]]:
         for i, plugin in enumerate(pair):
             if i % 2 == 0:
                 btn_pair.append(
-                    InlineKeyboardButton(f"{emoji} {plugin}", f"bot_help_menu:{plugin}")
+                    InlineKeyboardButton(plugin, f"bot_help_menu:{plugin}")
                 )
             else:
                 btn_pair.append(
-                    InlineKeyboardButton(f"{plugin} {emoji}", f"bot_help_menu:{plugin}")
+                    InlineKeyboardButton(plugin, f"bot_help_menu:{plugin}")
                 )
         buttons.append(btn_pair)
 
     buttons.append(
         [
-            InlineKeyboardButton("🏠", "help_data:start"),
+            InlineKeyboardButton("home", "help_data:start"),
             InlineKeyboardButton(Symbols.close, "help_data:botclose"),
         ]
     )
@@ -100,10 +98,10 @@ async def gen_bot_help_buttons() -> list[list[InlineKeyboardButton]]:
 def start_button() -> list[list[InlineKeyboardButton]]:
     return [
         [
-            InlineKeyboardButton("Command Seals 🔴", "session:menu"),
-            InlineKeyboardButton("Grimoire ⚙️", "help_data:bothelp"),
+            InlineKeyboardButton("Command Seals", "session:menu"),
+            InlineKeyboardButton("Grimoire", "help_data:bothelp"),
         ],
         [
-            InlineKeyboardButton("Root Archive 📦", "help_data:source"),
+            InlineKeyboardButton("Root Archive", "help_data:source"),
         ],
     ]

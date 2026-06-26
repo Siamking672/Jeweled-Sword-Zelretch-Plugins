@@ -5,7 +5,7 @@ from pySmartDL import SmartDL
 
 from zelretch.core import LOGS, Symbols
 from zelretch.functions.formatter import readable_time
-from zelretch.functions.tools import progress
+from zelretch.functions.runtime import progress
 
 from . import Config, HelpMenu, zelretch, on_message
 

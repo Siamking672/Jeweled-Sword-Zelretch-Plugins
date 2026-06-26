@@ -4,7 +4,7 @@ import time
 from pyrogram.types import Message
 
 from zelretch.functions.formatter import readable_time
-from zelretch.functions.tools import progress, runcmd
+from zelretch.functions.runtime import progress, runcmd
 
 from . import Config, HelpMenu, zelretch, on_message
 

@@ -101,5 +101,5 @@ HelpMenu("master").add(
     "Remove a master from your client.",
     "delmaster",
 ).info(
-    "Masters"
+    "Bound Masters"
 ).done()

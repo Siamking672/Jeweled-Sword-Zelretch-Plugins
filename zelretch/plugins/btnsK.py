@@ -18,12 +18,12 @@ def gen_keyboard(collection: list, row: int = 2) -> list[list[KeyboardButton]]:
 def session_inline_keyboard() -> list[list[InlineKeyboardButton]]:
     return [
         [
-            InlineKeyboardButton("Summon 💎", "session:new"),
-            InlineKeyboardButton("Sever 🗡️", "session:delete"),
+            InlineKeyboardButton("Summon", "session:new"),
+            InlineKeyboardButton("Sever", "session:delete"),
         ],
         [
-            InlineKeyboardButton("Roster 📜", "session:list"),
-            InlineKeyboardButton("Workshop 🏠", "session:home"),
+            InlineKeyboardButton("Roster", "session:list"),
+            InlineKeyboardButton("Workshop", "session:home"),
         ],
     ]
 
@@ -32,12 +32,12 @@ def session_keyboard() -> ReplyKeyboardMarkup:
     return ReplyKeyboardMarkup(
         [
             [
-                KeyboardButton("Summon 💎"),
-                KeyboardButton("Sever 🗡️"),
+                KeyboardButton("Summon"),
+                KeyboardButton("Sever"),
             ],
             [
-                KeyboardButton("Roster 📜"),
-                KeyboardButton("Workshop 🏠"),
+                KeyboardButton("Roster"),
+                KeyboardButton("Workshop"),
             ],
         ],
         resize_keyboard=True,
@@ -48,11 +48,11 @@ def start_keyboard() -> ReplyKeyboardMarkup:
     return ReplyKeyboardMarkup(
         [
             [
-                KeyboardButton("🔴 Command Seals"),
-                KeyboardButton("👥 Magi"),
+                KeyboardButton("Command Seals"),
+                KeyboardButton("Magi"),
             ],
             [
-                KeyboardButton("Root Archive 📣"),
+                KeyboardButton("Root Archive"),
             ],
         ],
         resize_keyboard=True,

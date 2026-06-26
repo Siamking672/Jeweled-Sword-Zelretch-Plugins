@@ -108,10 +108,10 @@ class ZelretchClient(Client):
         caption = (
             f"**{Symbols.check_mark} Zelretch is online.**\n\n"
             "**Runtime Status**\n"
-            f"{Symbols.triangle_right} **Bound Masters:** `{len(self.users)}`\n"
+            f"{Symbols.triangle_right} **Masters:** `{len(self.users)}`\n"
             f"{Symbols.triangle_right} **Mystic Codes:** `{len(Config.CMD_MENU)}`\n"
             f"{Symbols.triangle_right} **Spells:** `{len(Config.CMD_INFO)}`\n"
-            f"{Symbols.triangle_right} **Masters:** `{len(Config.MASTER_USERS)}`\n"
+            f"{Symbols.triangle_right} **Bound Masters:** `{len(Config.MASTER_USERS)}`\n"
             f"{Symbols.triangle_right} **Authorized Magi:** `{len(Config.AUTH_USERS)}`\n\n"
             "**Build Info**\n"
             f"{Symbols.triangle_right} **Zelretch:** `{version['zelretch']}`\n"
@@ -126,7 +126,7 @@ class ZelretchClient(Client):
             parse_mode=ParseMode.MARKDOWN,
             disable_notification=True,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Enter the Workshop 🔴", url=f"https://t.me/{self.bot.me.username}?start=start")]]
+                [[InlineKeyboardButton("Enter the Workshop", url=f"https://t.me/{self.bot.me.username}?start=start")]]
             ),
         )
 

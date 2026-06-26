@@ -324,8 +324,6 @@ async def get_anime_info(search_term: str) -> tuple[str, str]:
     isAdult = data["isAdult"]
 
     trailer = "N/A"
-    if data["trailer"] and data["trailer"]["site"] == "youtube":
-        trailer = f"[Youtube](https://youtu.be/{data['trailer']['id']})"
 
     response = httpx.get(f"https://img.anili.st/media/{anime_id}").content
     banner = f"anime_{anime_id}.jpg"

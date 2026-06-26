@@ -5,7 +5,7 @@ from pyrogram import Client
 from pyrogram.types import Message
 
 from zelretch.functions.formatter import readable_time
-from zelretch.functions.tools import progress
+from zelretch.functions.runtime import progress
 
 from . import HelpMenu, db, zelretch, on_message
 

@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from zelretch.core import LOGS
-from zelretch.functions.tools import restart
+from zelretch.functions.runtime import restart
 
 from ..btnsG import gen_bot_help_buttons, start_button
 from . import HELP_MSG, START_MSG, BotHelp, Config, zelretch

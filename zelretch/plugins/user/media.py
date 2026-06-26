@@ -12,7 +12,7 @@ from zelretch.functions.formatter import readable_time
 from zelretch.functions.images import create_thumbnail, draw_meme
 from zelretch.functions.media import get_metedata
 from zelretch.functions.paste import post_to_telegraph
-from zelretch.functions.tools import progress, runcmd
+from zelretch.functions.runtime import progress, runcmd
 from zelretch.functions.utility import TGraph
 
 from . import Config, HelpMenu, db, zelretch, on_message

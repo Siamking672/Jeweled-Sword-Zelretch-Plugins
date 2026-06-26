@@ -26,4 +26,3 @@ telegraph
 tgcrypto
 Unidecode
 wikipedia
-yt-dlp

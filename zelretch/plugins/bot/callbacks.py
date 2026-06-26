@@ -3,7 +3,7 @@ from pyrogram.enums import ParseMode
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from zelretch.functions.templates import command_template, help_template
-from zelretch.functions.tools import restart
+from zelretch.functions.runtime import restart
 
 from ..btnsG import gen_bot_help_buttons, gen_inline_help_buttons, start_button
 from ..btnsK import session_inline_keyboard
@@ -13,7 +13,7 @@ from . import HELP_MSG, START_MSG, Config, Symbols, zelretch
 async def check_auth_click(cb: CallbackQuery) -> bool:
     if cb.from_user.id not in Config.AUTH_USERS:
         await cb.answer(
-            "Only authorized Masters can enter this workshop.\n\n🔴",
+            "Only authorized Bound Masters can enter this workshop.\n\n🔴",
             show_alert=True,
         )
         return False
@@ -40,7 +40,7 @@ async def bot_help_menu_cb(_, cb: CallbackQuery):
 
     try:
         buttons = [
-            InlineKeyboardButton(f"{Symbols.bullet} {i}", f"bot_help_cmd:{plugin}:{i}")
+            InlineKeyboardButton(i, f"bot_help_cmd:{plugin}:{i}")
             for i in sorted(Config.BOT_HELP[plugin]["commands"])
         ]
     except KeyError:
@@ -171,9 +171,7 @@ async def help_menu_cb(_, cb: CallbackQuery):
 
     try:
         buttons = [
-            InlineKeyboardButton(
-                f"{Symbols.bullet} {i}", f"help_cmd:{page}:{plugin}:{i}"
-            )
+            InlineKeyboardButton(i, f"help_cmd:{page}:{plugin}:{i}")
             for i in sorted(Config.HELP_DICT[plugin]["commands"])
         ]
     except KeyError:
@@ -286,7 +284,7 @@ async def help_close_cb(_, cb: CallbackQuery):
                 InlineKeyboardButton("Mystic Codes", url="https://github.com/Siamking672/Zelretch-Plugins"),
             ],
             [
-                InlineKeyboardButton("🔙", "help_data:start"),
+                InlineKeyboardButton("back", "help_data:start"),
                 InlineKeyboardButton(Symbols.close, "help_data:botclose"),
             ],
         ]

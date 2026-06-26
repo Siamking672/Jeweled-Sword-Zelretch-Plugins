@@ -23,7 +23,7 @@ def _session_markup() -> InlineKeyboardMarkup:
 async def _check_auth_callback(cb: CallbackQuery) -> bool:
     if cb.from_user.id not in Config.AUTH_USERS:
         await cb.answer(
-            "Only authorized Masters can enter this workshop.",
+            "Only authorized Bound Masters can enter this workshop.",
             show_alert=True,
         )
         return False
@@ -60,7 +60,7 @@ async def session_menu(_, message: Message):
     await _show_session_menu_message(message)
 
 
-@zelretch.bot.on_message(filters.regex(r"(?:📟 Session|🔴 Command Seals)") & Config.AUTH_USERS & filters.private)
+@zelretch.bot.on_message(filters.regex(r"^(?:📟 Session|🔴 Command Seals|Command Seals)$") & Config.AUTH_USERS & filters.private)
 async def session_keyboard_menu(_, message: Message):
     await _show_session_menu_message(message)
 
@@ -157,7 +157,7 @@ async def _create_new_session(message: Message):
                 pass
 
 
-@zelretch.bot.on_message(filters.regex(r"(?:New 💫|Summon 💎)") & Config.AUTH_USERS & filters.private)
+@zelretch.bot.on_message(filters.regex(r"^(?:New 💫|Summon 💎|Summon)$") & Config.AUTH_USERS & filters.private)
 async def new_session(_, message: Message):
     await _create_new_session(message)
 
@@ -184,7 +184,7 @@ async def _send_delete_session(message: Message, *, edit: bool = False):
 
     buttons = gen_inline_keyboard(collection, 2)
     buttons.append([InlineKeyboardButton("Back", "session:menu")])
-    buttons.append([InlineKeyboardButton("Cancel ❌", "auth_close")])
+    buttons.append([InlineKeyboardButton("Cancel", "auth_close")])
 
     text = "**Choose a contract to sever:**"
     if edit:
@@ -193,7 +193,7 @@ async def _send_delete_session(message: Message, *, edit: bool = False):
 
 
 @zelretch.bot.on_message(
-    filters.regex(r"(?:Delete ❌|Sever 🗡️)") & Config.AUTH_USERS & filters.private
+    filters.regex(r"^(?:Delete ❌|Sever 🗡️|Sever)$") & Config.AUTH_USERS & filters.private
 )
 async def delete_session(_, message: Message):
     await _send_delete_session(message)
@@ -248,7 +248,7 @@ async def rm_session_cb(client: Client, cb: CallbackQuery):
 
     buttons = gen_inline_keyboard(collection, 2)
     buttons.append([InlineKeyboardButton("Back", "session:menu")])
-    buttons.append([InlineKeyboardButton("Cancel ❌", "auth_close")])
+    buttons.append([InlineKeyboardButton("Cancel", "auth_close")])
 
     await cb.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
 
@@ -271,7 +271,7 @@ async def _send_session_list(message: Message, *, edit: bool = False):
     return await message.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons))
 
 
-@zelretch.bot.on_message(filters.regex(r"(?:List 📜|Roster 📜)") & Config.AUTH_USERS & filters.private)
+@zelretch.bot.on_message(filters.regex(r"^(?:List 📜|Roster 📜|Roster)$") & Config.AUTH_USERS & filters.private)
 async def list_sessions(_, message: Message):
     await _send_session_list(message)
 
@@ -284,10 +284,10 @@ async def list_sessions_cb(_, cb: CallbackQuery):
     await _send_session_list(cb.message, edit=True)
 
 
-@zelretch.bot.on_message(filters.regex(r"(?:Home 🏠|Workshop 🏠)") & filters.private & Config.AUTH_USERS)
+@zelretch.bot.on_message(filters.regex(r"^(?:Home 🏠|Workshop 🏠|Workshop)$") & filters.private & Config.AUTH_USERS)
 async def go_home(_, message: Message):
     await message.reply_text(
-        "**Workshop 🏠**",
+        "**Workshop**",
         reply_markup=ReplyKeyboardRemove(),
     )
     await message.reply_text(
@@ -312,5 +312,5 @@ async def session_home_cb(_, cb: CallbackQuery):
 BotHelp("Command Seals").add(
     "session", "Open the Command Seal registry to summon, sever, or list userbot contracts."
 ).info(
-    "Command Seal Registry 🔴"
+    "Command Seal Registry"
 ).done()

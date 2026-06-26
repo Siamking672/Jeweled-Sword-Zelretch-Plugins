@@ -4,7 +4,7 @@ import time
 from pyrogram.types import Message
 
 from zelretch.functions.convert import convert_to_gif
-from zelretch.functions.tools import runcmd
+from zelretch.functions.runtime import runcmd
 
 from . import HelpMenu, zelretch, on_message, Config
 

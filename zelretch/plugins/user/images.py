@@ -11,7 +11,7 @@ from pyrogram.types import InputMediaDocument, InputMediaPhoto, Message
 
 from zelretch.core import ENV
 from zelretch.functions.images import deep_fry, download_images, get_wallpapers
-from zelretch.functions.tools import runcmd
+from zelretch.functions.runtime import runcmd
 
 from . import Config, HelpMenu, db, zelretch, on_message
 

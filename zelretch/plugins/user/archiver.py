@@ -5,7 +5,7 @@ import zipfile
 from pyrogram.types import Message
 
 from zelretch.functions.formatter import readable_time
-from zelretch.functions.tools import get_files_from_directory, progress
+from zelretch.functions.runtime import get_files_from_directory, progress
 
 from . import Config, HelpMenu, zelretch, on_message
 

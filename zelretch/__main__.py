@@ -11,7 +11,7 @@ from zelretch.core import (
     db,
     zelretch,
 )
-from zelretch.functions.tools import initialize_git
+from zelretch.functions.runtime import initialize_git
 from zelretch.functions.utility import BList, Flood, TGraph
 
 

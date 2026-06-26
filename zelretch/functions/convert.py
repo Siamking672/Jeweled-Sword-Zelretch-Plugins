@@ -5,7 +5,7 @@ from pyrogram.types import Message
 from PIL import Image
 from zelretch.core import Config
 
-from .tools import runcmd
+from .runtime import runcmd
 
 
 async def convert_to_gif(file: str, is_video: bool = False) -> str:

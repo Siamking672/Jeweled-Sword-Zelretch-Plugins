@@ -1,7 +1,6 @@
 import os
 from typing import Union
 
-import requests
 from pyrogram import Client
 from pyrogram.file_id import FileId
 from pyrogram.raw.functions.messages import UploadMedia
@@ -13,7 +12,6 @@ from pyrogram.raw.types import (
 from pyrogram.types import Animation, Audio, Document, Message, Photo, Sticker, Video
 
 from zelretch.core import Symbols
-
 
 async def get_metedata(media: Union[Animation, Audio, Document, Photo, Sticker, Video]):
     output = "📄 MetaData:\n\n"
@@ -121,24 +119,6 @@ async def get_metedata(media: Union[Animation, Audio, Document, Photo, Sticker, 
 
     return output
 
-
-def get_media_text_ocr(filename: str, api_key: str, language: str = "eng") -> dict:
-    payload = {
-        "isOverlayRequired": False,
-        "apikey": api_key,
-        "language": language,
-    }
-
-    with open(filename, "rb") as f:
-        r = requests.post(
-            "https://api.ocr.space/parse/image",
-            files={filename: f},
-            data=payload,
-        )
-
-    return r.json()
-
-
 async def upload_media(client: Client, chat_id: int, file: str) -> InputDocument:
     media = await client.invoke(
         UploadMedia(
@@ -160,7 +140,6 @@ async def upload_media(client: Client, chat_id: int, file: str) -> InputDocument
         file_reference=media.document.file_reference,
     )
 
-
 async def get_media_from_id(file_id: str) -> InputDocument:
     file = FileId.decode(file_id)
 
@@ -169,7 +148,6 @@ async def get_media_from_id(file_id: str) -> InputDocument:
         access_hash=file.access_hash,
         file_reference=file.file_reference,
     )
-
 
 async def get_media_fileid(message: Message) -> str | None:
     file_id = None
