@@ -32,11 +32,12 @@ async def help_pm(_, message: Message):
 
 @zelretch.bot.on_message(filters.command("restart") & Config.AUTH_USERS)
 async def restart_clients(_, message: Message):
-    await message.reply_text("Restarting bot.")
+    await message.reply_text("**🔴 Restarting Zelretch. Reopening the Kaleidoscope...**")
     try:
         await restart()
     except Exception as e:
         LOGS.error(e)
+        await message.reply_text(f"**Restart failed:** `{e}`")
 
 
 BotHelp("Others").add(

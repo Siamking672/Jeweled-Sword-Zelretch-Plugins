@@ -3,6 +3,7 @@ from pyrogram.enums import ParseMode
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from zelretch.functions.templates import command_template, help_template
+from zelretch.functions.tools import restart
 
 from ..btnsG import gen_bot_help_buttons, gen_inline_help_buttons, start_button
 from ..btnsK import session_inline_keyboard
@@ -76,10 +77,38 @@ async def bot_help_cmd_cb(_, cb: CallbackQuery):
     command = str(cb.data.split(":")[2])
 
     if plugin in ("Sessions", "Command Seals") and command == "session":
+        await cb.answer()
         await cb.edit_message_text(
             "**🔴 Command Seal Registry**\n\nSummon, sever, or inspect bound userbot contracts.",
             reply_markup=InlineKeyboardMarkup(session_inline_keyboard()),
         )
+        return
+
+    # In the bot command archive, these buttons should perform the action,
+    # not only show another description page.
+    if plugin == "Others" and command == "start":
+        await cb.answer()
+        await cb.edit_message_text(
+            START_MSG.format(cb.from_user.mention),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(start_button()),
+        )
+        return
+
+    if plugin == "Others" and command == "help":
+        await cb.answer()
+        buttons = await gen_bot_help_buttons()
+        await cb.edit_message_text(
+            HELP_MSG,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
+        return
+
+    if plugin == "Others" and command == "restart":
+        await cb.answer("Restarting Zelretch...")
+        await cb.edit_message_text("**🔴 Restarting Zelretch. Reopening the Kaleidoscope...**")
+        await restart()
         return
 
     cmd_dict = Config.BOT_HELP[plugin]["commands"][command]
@@ -99,14 +128,13 @@ async def bot_help_cmd_cb(_, cb: CallbackQuery):
 
     try:
         await cb.edit_message_text(
-            result,
-            ParseMode.MARKDOWN,
-            True,
-            InlineKeyboardMarkup(buttons),
+            text=result,
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(buttons),
         )
-    except Exception:
-        # handles MessageNotModified error
-        pass
+    except Exception as e:
+        await cb.answer(f"Button error: {e}", show_alert=True)
 
 
 @zelretch.bot.on_callback_query(filters.regex(r"help_page"))

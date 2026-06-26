@@ -23,6 +23,7 @@ class ZelretchClient(Client):
             api_id=Config.API_ID,
             api_hash=Config.API_HASH,
             bot_token=Config.BOT_TOKEN,
+            in_memory=True,
             plugins=dict(root="zelretch.plugins.bot"),
         )
 
@@ -107,11 +108,11 @@ class ZelretchClient(Client):
         caption = (
             f"**{Symbols.check_mark} Zelretch is online.**\n\n"
             "**Runtime Status**\n"
-            f"{Symbols.triangle_right} **Clients:** `{len(self.users)}`\n"
-            f"{Symbols.triangle_right} **Plugins:** `{len(Config.CMD_MENU)}`\n"
-            f"{Symbols.triangle_right} **Commands:** `{len(Config.CMD_INFO)}`\n"
+            f"{Symbols.triangle_right} **Bound Masters:** `{len(self.users)}`\n"
+            f"{Symbols.triangle_right} **Mystic Codes:** `{len(Config.CMD_MENU)}`\n"
+            f"{Symbols.triangle_right} **Spells:** `{len(Config.CMD_INFO)}`\n"
             f"{Symbols.triangle_right} **Masters:** `{len(Config.MASTER_USERS)}`\n"
-            f"{Symbols.triangle_right} **Auth Users:** `{len(Config.AUTH_USERS)}`\n\n"
+            f"{Symbols.triangle_right} **Authorized Magi:** `{len(Config.AUTH_USERS)}`\n\n"
             "**Build Info**\n"
             f"{Symbols.triangle_right} **Zelretch:** `{version['zelretch']}`\n"
             f"{Symbols.triangle_right} **Kurigram:** `{version['kurigram']}`\n"

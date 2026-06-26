@@ -4,7 +4,10 @@ import math
 import os
 import shlex
 import shutil
+import sys
 import time
+
+from pathlib import Path
 
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
@@ -78,6 +81,34 @@ async def update_dotenv(key: str, value: str) -> None:
         file.writelines(data)
 
 
+async def _stop_client(client) -> None:
+    """Stop a Kurigram/Pyrogram client without blocking the active handler."""
+    if client is None:
+        return
+    try:
+        is_connected = getattr(client, "is_connected", None)
+        if is_connected is False:
+            return
+        await client.stop(block=False)
+    except TypeError:
+        await client.stop()
+    except Exception:
+        pass
+
+
+async def _stop_all_clients() -> None:
+    """Release Telegram SQLite session handles before replacing the process."""
+    try:
+        from zelretch.core import zelretch
+
+        for client in list(getattr(zelretch, "users", [])):
+            await _stop_client(client)
+        await _stop_client(getattr(zelretch, "bot", None))
+    except Exception:
+        pass
+    await asyncio.sleep(1)
+
+
 async def restart(
     update: bool = False,
     clean_up: bool = False,
@@ -90,20 +121,30 @@ async def restart(
         pass
 
     if clean_up:
-        os.system(f"mkdir {Config.DWL_DIR}")
-        os.system(f"mkdir {Config.TEMP_DIR}")
+        os.makedirs(Config.DWL_DIR, exist_ok=True)
+        os.makedirs(Config.TEMP_DIR, exist_ok=True)
         return
 
+    await _stop_all_clients()
+
     if shutdown:
-        return os.system(f"kill -9 {os.getpid()}")
+        os._exit(0)
 
-    cmd = (
-        "git pull && pip3 install -U -r requirements.txt && bash start.sh"
-        if update
-        else "bash start.sh"
-    )
+    project_root = Path(__file__).resolve().parents[2]
+    os.chdir(project_root)
 
-    os.system(f"kill -9 {os.getpid()} && {cmd}")
+    if update:
+        cmd = (
+            "git pull && "
+            "pip3 install --root-user-action=ignore -U -r requirements.txt && "
+            "exec python3 -m zelretch"
+        )
+        os.execvp("bash", ["bash", "-lc", cmd])
+
+    # Replace the current Python process instead of killing it and spawning a
+    # second copy. This avoids duplicate Zelretch instances and prevents
+    # Kurigram/Pyrogram SQLite session files from staying locked.
+    os.execv(sys.executable, [sys.executable, "-m", "zelretch"])
 
 
 async def gen_changelogs(repo: Repo, branch: str) -> str:
