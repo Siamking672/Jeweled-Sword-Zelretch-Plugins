@@ -5,7 +5,6 @@ from pyrogram import idle
 from zelretch import __version__
 from zelretch.core import (
     Config,
-    ForcesubSetup,
     GachaBotsSetup,
     TemplateSetup,
     UserSetup,
@@ -20,7 +19,6 @@ async def main():
     await zelretch.startup()
     await db.connect()
     await UserSetup()
-    await ForcesubSetup()
     await GachaBotsSetup()
     await TemplateSetup()
     await Flood.updateFromDB()

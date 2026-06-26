@@ -6,7 +6,7 @@ from zelretch.core import ENV, db
 ALIVE_TEMPLATES = [
     (
         "•────────────────•\n"
-        "•  Jeweled Sword Zelretch is alive  •\n"
+        "•  Zelretch is alive  •\n"
         "╭────────────────•\n"
         "╰➢ ᴏᴡɴᴇʀ » {owner}\n"
         "╰➢ ᴋᴜʀɪɢʀᴀᴍ » {kurigram}\n"

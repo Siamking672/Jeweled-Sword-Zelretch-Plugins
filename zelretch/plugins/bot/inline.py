@@ -26,12 +26,12 @@ async def help_inline(_, query: InlineQuery):
         results=[
             (
                 InlineQueryResultArticle(
-                    "Jeweled Sword Zelretch Help Menu 🍀",
+                    "Zelretch Help Menu 🍀",
                     InputTextMessageContent(
                         caption,
                         disable_web_page_preview=True,
                     ),
-                    description="Inline Query for Help Menu of Jeweled Sword Zelretch",
+                    description="Inline Query for Help Menu of Zelretch",
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
             )

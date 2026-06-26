@@ -1,7 +1,7 @@
 services:
-  jeweled-sword-zelretch-plugins:
+  zelretch-plugins:
     build: .
-    container_name: jeweled-sword-zelretch-plugins
+    container_name: zelretch-plugins
     env_file:
       - .env
     restart: unless-stopped

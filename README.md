@@ -1,5 +1,5 @@
 ---
-title: Jeweled Sword Zelretch Plugins
+title: Zelretch Plugins
 emoji: 💎
 colorFrom: indigo
 colorTo: purple
@@ -8,14 +8,14 @@ pinned: false
 license: gpl-3.0
 ---
 
-# Jeweled Sword Zelretch Plugins
+# Zelretch Plugins
 
-Plugin source repository for **Jeweled Sword Zelretch**.
+Plugin source repository for **Zelretch**.
 
 The main wrapper repository downloads this repo by default:
 
 ```text
-Siamking672/Jeweled-Sword-Zelretch-Plugins
+Siamking672/Zelretch-Plugins
 ```
 
 ## Runtime stack
@@ -40,9 +40,9 @@ OWNER_ID=
 Optional:
 
 ```env
-DATABASE_NAME=JeweledSwordZelretch
+DATABASE_NAME=Zelretch
 HANDLERS=. ! ?
-PLUGINS_REPO=Siamking672/Jeweled-Sword-Zelretch-Plugins
+PLUGINS_REPO=Siamking672/Zelretch-Plugins
 PLUGINS_BRANCH=main
 ```
 
@@ -64,7 +64,7 @@ OWNER_ID=
 For the main wrapper, the default plugin source is:
 
 ```text
-Siamking672/Jeweled-Sword-Zelretch-Plugins
+Siamking672/Zelretch-Plugins
 ```
 
 Docker Spaces build from the root `Dockerfile`; `docker-compose.yml` is for local/VPS deployment only.
@@ -107,5 +107,4 @@ HelpMenu("hii").add(
 
 ## Notes
 
-- Forced hardcoded channel auto-join remains removed.
 - The GPL license file is retained.

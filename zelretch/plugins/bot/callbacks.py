@@ -5,6 +5,7 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 from zelretch.functions.templates import command_template, help_template
 
 from ..btnsG import gen_bot_help_buttons, gen_inline_help_buttons, start_button
+from ..btnsK import session_inline_keyboard
 from . import HELP_MSG, START_MSG, Config, Symbols, zelretch
 
 
@@ -73,6 +74,14 @@ async def bot_help_cmd_cb(_, cb: CallbackQuery):
     result = ""
     plugin = str(cb.data.split(":")[1])
     command = str(cb.data.split(":")[2])
+
+    if plugin == "Sessions" and command == "session":
+        await cb.edit_message_text(
+            "**Session Manager**\n\nChoose an option below to create, delete, or list userbot sessions.",
+            reply_markup=InlineKeyboardMarkup(session_inline_keyboard()),
+        )
+        return
+
     cmd_dict = Config.BOT_HELP[plugin]["commands"][command]
 
     result += f"**{Symbols.radio_select} 𝖢𝗈𝗆𝗆𝖺𝗇𝖽:** `/{cmd_dict['command']}`"
@@ -245,8 +254,8 @@ async def help_close_cb(_, cb: CallbackQuery):
     elif action == "source":
         buttons = [
             [
-                InlineKeyboardButton("Main Repo", url="https://github.com/Siamking672/Jeweled-Sword-Zelretch"),
-                InlineKeyboardButton("Plugins Repo", url="https://github.com/Siamking672/Jeweled-Sword-Zelretch-Plugins"),
+                InlineKeyboardButton("Main Repo", url="https://github.com/Siamking672/Zelretch"),
+                InlineKeyboardButton("Plugins Repo", url="https://github.com/Siamking672/Zelretch-Plugins"),
             ],
             [
                 InlineKeyboardButton("🔙", "help_data:start"),
@@ -254,12 +263,12 @@ async def help_close_cb(_, cb: CallbackQuery):
             ],
         ]
         await cb.edit_message_text(
-            "__» The source code is available on GitHub. You can find the link below.__\n"
-            "__» Every project available under Jeweled Sword Zelretch are open-source and free to use and modify to your needs.__\n"
-            "__» Anyone pretending to be the developer of this bot and selling the code, is a scammer.__\n\n"
-            "__» Please consider giving a star to the repository if you liked the project.__\n"
-            "__» Feel free to contact us if you need any help regarding the source code.__\n\n"
-            "**❤️ 🇮🇳**",
+            "__» Zelretch is available on GitHub. Use the buttons below to open the main project and plugin repository.__\n"
+            "__» The project is open-source, free to use, and free to modify for your own setup.__\n"
+            "__» Do not pay anyone claiming to sell an official copy of this code.__\n\n"
+            "__» If the project is useful to you, consider starring the repositories.__\n"
+            "__» For setup or source-code details, check the linked repositories.__\n\n"
+            "**❤️ 🇧🇩**",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )

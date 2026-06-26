@@ -123,7 +123,7 @@ async def server_usage(_, message: Message):
 
     await usage_message.edit(
         await usage_templates(
-            appName="Jeweled Sword Zelretch",
+            appName="Zelretch",
             appHours=0,
             appMinutes=0,
             appPercentage=0,
@@ -145,8 +145,8 @@ async def getLogs(_, message: Message):
     limit = int(message.command[1]) if len(message.command) > 1 else 100
 
     try:
-        if os.path.exists("JeweledSwordZelretch.log"):
-            with open("JeweledSwordZelretch.log", "r") as file:
+        if os.path.exists("Zelretch.log"):
+            with open("Zelretch.log", "r") as file:
                 logData = file.readlines()
                 logData = "".join(logData[-limit:])
 

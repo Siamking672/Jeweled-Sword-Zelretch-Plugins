@@ -19,7 +19,7 @@ class ZelretchClient(Client):
     def __init__(self) -> None:
         self.users: list[Client] = []
         self.bot: Client = Client(
-            name="JeweledSwordZelretchBot",
+            name="ZelretchBot",
             api_id=Config.API_ID,
             api_hash=Config.API_HASH,
             bot_token=Config.BOT_TOKEN,
@@ -58,7 +58,7 @@ class ZelretchClient(Client):
         await self.bot.start()
         me = await self.bot.get_me()
         LOGS.info(
-            f"{Symbols.arrow_right * 2} Started Jeweled Sword Zelretch Client: '{me.username}' {Symbols.arrow_left * 2}"
+            f"{Symbols.arrow_right * 2} Started Zelretch Client: '{me.username}' {Symbols.arrow_left * 2}"
         )
 
     async def load_plugin(self) -> None:
@@ -103,18 +103,25 @@ class ZelretchClient(Client):
             return False
 
     async def start_message(self, version: dict) -> None:
-        await self.bot.send_animation(
+        startup_image = "zelretch/resources/images/zelretch_startup.jpg"
+        caption = (
+            f"**{Symbols.check_mark} Zelretch is online.**\n\n"
+            "**Runtime Status**\n"
+            f"{Symbols.triangle_right} **Clients:** `{len(self.users)}`\n"
+            f"{Symbols.triangle_right} **Plugins:** `{len(Config.CMD_MENU)}`\n"
+            f"{Symbols.triangle_right} **Commands:** `{len(Config.CMD_INFO)}`\n"
+            f"{Symbols.triangle_right} **Stan Users:** `{len(Config.STAN_USERS)}`\n"
+            f"{Symbols.triangle_right} **Auth Users:** `{len(Config.AUTH_USERS)}`\n\n"
+            "**Build Info**\n"
+            f"{Symbols.triangle_right} **Zelretch:** `{version['zelretch']}`\n"
+            f"{Symbols.triangle_right} **Kurigram:** `{version['kurigram']}`\n"
+            f"{Symbols.triangle_right} **Python:** `{version['python']}`"
+        )
+
+        await self.bot.send_photo(
             Config.LOGGER_ID,
-            "https://te.legra.ph/file/8deca5343c64d9db9401f.mp4",
-            f"**{Symbols.check_mark} Jeweled Sword Zelretch is now online.**\n\n"
-            f"**{Symbols.triangle_right} Clients:** `{len(self.users)}`\n"
-            f"**{Symbols.triangle_right} Plugins:** `{len(Config.CMD_MENU)}`\n"
-            f"**{Symbols.triangle_right} Commands:** `{len(Config.CMD_INFO)}`\n"
-            f"**{Symbols.triangle_right} Stan Users:** `{len(Config.STAN_USERS)}`\n"
-            f"**{Symbols.triangle_right} Auth Users:** `{len(Config.AUTH_USERS)}`\n\n"
-            f"**{Symbols.triangle_right} Jeweled Sword Zelretch:** `{version['zelretch']}`\n"
-            f"**{Symbols.triangle_right} Kurigram:** `{version['kurigram']}`\n"
-            f"**{Symbols.triangle_right} Python:** `{version['python']}`",
+            startup_image,
+            caption=caption,
             parse_mode=ParseMode.MARKDOWN,
             disable_notification=True,
             reply_markup=InlineKeyboardMarkup(
@@ -124,7 +131,7 @@ class ZelretchClient(Client):
 
     async def startup(self) -> None:
         LOGS.info(
-            f"{Symbols.bullet * 3} Starting Jeweled Sword Zelretch Client & User {Symbols.bullet * 3}"
+            f"{Symbols.bullet * 3} Starting Zelretch Client & User {Symbols.bullet * 3}"
         )
         await self.start_bot()
         await self.start_user()

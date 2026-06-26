@@ -184,7 +184,7 @@ async def new_channel(client: Client, message: Message):
     new_title = await zelretch.input(message)
 
     try:
-        new_channel = await client.create_channel(new_title, "Created by Jeweled Sword Zelretch")
+        new_channel = await client.create_channel(new_title, "Created by Zelretch")
         await zelretch.edit(
             message, f"**𝖢𝗁𝖺𝗇𝗇𝖾𝗅 𝗅𝗂𝗇𝗄:** [{new_channel.title}]({new_channel.username})"
         )
@@ -353,28 +353,28 @@ HelpMenu("groups").add(
     "setgusername",
     "<username>",
     "Set the group username.",
-    "setgusername JeweledSwordZelretch",
+    "setgusername Zelretch",
     "Only group owners can use this command. Give username without '@'.",
 ).add(
     "getglink", None, "Get the group invite link.", "getglink"
 ).add(
     "kickme", None, "Leave the chat in swag 😎!", "kickme"
 ).add(
-    "newgroup", "<title>", "Create a new group.", "newgroup Jeweled Sword Zelretch Group"
+    "newgroup", "<title>", "Create a new group.", "newgroup Zelretch Group"
 ).add(
-    "newchannel", "<title>", "Create a new channel.", "newchannel Jeweled Sword Zelretch Channel"
+    "newchannel", "<title>", "Create a new channel.", "newchannel Zelretch Channel"
 ).add(
     "chatinfo", "<chat id (optional)>", "Get info about the chat.", "chatinfo"
 ).add(
     "chatadmins",
     "<chat id (optional)>",
     "Get the list of admins of mentioned chat.",
-    "chatadmins @Jeweled Sword Zelretch_Chats",
+    "chatadmins @Zelretch_Chats",
 ).add(
     "chatbots",
     "<chat id (optional)>",
     "Get the list of bots of mentioned chat.",
-    "chatbots @Jeweled Sword Zelretch_Chats",
+    "chatbots @Zelretch_Chats",
 ).add(
     "id",
     "<reply to message (optional)>",

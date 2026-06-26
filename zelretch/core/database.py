@@ -20,7 +20,6 @@ class Database:
         self.echo = self.db["echo"]
         self.env = self.db["env"]
         self.filter = self.db["filter"]
-        self.forcesub = self.db["forcesub"]
         self.gachabots = self.db["gachabots"]
         self.gban = self.db["gban"]
         self.gmute = self.db["gmute"]
@@ -506,37 +505,6 @@ class Database:
 
     async def get_all_greetings(self, client: int) -> list:
         return [i async for i in self.greetings.find({"client": client})]
-
-    async def add_forcesub(self, chat: int, must_join: int):
-        await self.forcesub.update_one(
-            {"chat": chat},
-            {"$push": {"must_join": must_join}},
-            upsert=True,
-        )
-
-    async def rm_forcesub(self, chat: int, must_join: int) -> int:
-        await self.forcesub.update_one(
-            {"chat": chat},
-            {"$pull": {"must_join": must_join}},
-        )
-        data = await self.forcesub.find_one({"chat": chat})
-        return len(data["must_join"])
-
-    async def rm_all_forcesub(self, in_chat: int):
-        await self.forcesub.delete_one({"chat": in_chat})
-
-    async def is_forcesub(self, chat: int, must_join: int) -> bool:
-        data = await self.get_forcesub(chat)
-        if must_join in data["must_join"]:
-            return True
-        return False
-
-    async def get_forcesub(self, in_chat: int):
-        data = await self.forcesub.find_one({"chat": in_chat})
-        return data
-
-    async def get_all_forcesubs(self) -> list:
-        return [i async for i in self.forcesub.find({})]
 
     async def add_gachabot(
         self, client: int, bot: tuple[int, str], catch_command: str, chat_id: int

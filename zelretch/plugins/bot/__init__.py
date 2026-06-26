@@ -7,7 +7,7 @@ from zelretch.plugins.help import BotHelp
 START_MSG = """
 👋 **Greetings, {0}.**
 
-Jeweled Sword Zelretch is ready. Use the buttons below to manage sessions, open help, and configure the userbot.
+Zelretch is ready. Use the buttons below to manage sessions, open help, and configure the userbot.
 """
 
 HELP_MSG = """

@@ -189,7 +189,7 @@ async def gpsLocation(_, message: Message):
         message, f"Searching for `{search_query}` on google maps..."
     )
 
-    geolocator = Nominatim(user_agent="Jeweled Sword Zelretch")
+    geolocator = Nominatim(user_agent="Zelretch")
     location: Location = geolocator.geocode(search_query)
 
     if not location:
@@ -230,12 +230,12 @@ async def webScreenshot(_, message: Message):
     Driver.close(driver)
 
     with io.BytesIO(image) as result:
-        result.name = "Jeweled Sword Zelretch_Webshot.png"
+        result.name = "Zelretch_Webshot.png"
         await hell.reply_document(result)
         await hell.delete()
 
     try:
-        os.remove("Jeweled Sword Zelretch_Webshot.png")
+        os.remove("Zelretch_Webshot.png")
     except:
         pass
 
@@ -379,7 +379,7 @@ async def textToSpeech(_, message: Message):
             path,
             caption=f"**🔊 𝖵𝗈𝗂𝖼𝖾:** `{text[:100]}...`",
             performer="HellyAI",
-            title="Jeweled Sword Zelretch TTS",
+            title="Zelretch TTS",
             thumb="./zelretch/resources/images/zelretch_logo.png",
         )
         await hell.delete()

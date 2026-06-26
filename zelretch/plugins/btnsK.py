@@ -1,6 +1,6 @@
 # K: Keyboard Buttons
 
-from pyrogram.types import KeyboardButton, ReplyKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, KeyboardButton, ReplyKeyboardMarkup
 
 
 def gen_keyboard(collection: list, row: int = 2) -> list[list[KeyboardButton]]:
@@ -11,6 +11,21 @@ def gen_keyboard(collection: list, row: int = 2) -> list[list[KeyboardButton]]:
             kyb.append(KeyboardButton(x))
         keyboard.append(kyb)
     return keyboard
+
+
+
+
+def session_inline_keyboard() -> list[list[InlineKeyboardButton]]:
+    return [
+        [
+            InlineKeyboardButton("New 💫", "session:new"),
+            InlineKeyboardButton("Delete ❌", "session:delete"),
+        ],
+        [
+            InlineKeyboardButton("List 📜", "session:list"),
+            InlineKeyboardButton("Home 🏠", "session:home"),
+        ],
+    ]
 
 
 def session_keyboard() -> ReplyKeyboardMarkup:
@@ -34,10 +49,9 @@ def start_keyboard() -> ReplyKeyboardMarkup:
         [
             [
                 KeyboardButton("📟 Session"),
-                KeyboardButton("Force Sub ✨"),
+                KeyboardButton("👥 Users"),
             ],
             [
-                KeyboardButton("👥 Users"),
                 KeyboardButton("Others 📣"),
             ],
         ],

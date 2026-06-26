@@ -7,7 +7,7 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
     handlers=[
         RotatingFileHandler(
-            "JeweledSwordZelretch.log", maxBytes=(1024 * 1024 * 5), backupCount=10, encoding="utf-8"
+            "Zelretch.log", maxBytes=(1024 * 1024 * 5), backupCount=10, encoding="utf-8"
         ),
         logging.StreamHandler(),
     ],
@@ -16,4 +16,4 @@ logging.basicConfig(
 
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 
-LOGS = logging.getLogger("JeweledSwordZelretch")
+LOGS = logging.getLogger("Zelretch")

@@ -255,12 +255,12 @@ HelpMenu("profile").add(
     "setbio Embracing the zelretch.",
     "To remove the bio dont pass any argument.",
 ).add(
-    "setname", "<new name>", "Set the name of the bot.", "setname Jeweled Sword Zelretch"
+    "setname", "<new name>", "Set the name of the bot.", "setname Zelretch"
 ).add(
     "setusername",
     "<new username>",
     "Set the username of the bot.",
-    "setusername Jeweled Sword Zelretch",
+    "setusername Zelretch",
     "To remove the username dont pass any argument.",
 ).add(
     "delpfp",

@@ -17,13 +17,13 @@ class Config:
     OWNER_ID = int(getenv("OWNER_ID", 0))
 
     # github related configs
-    PLUGINS_REPO = getenv("PLUGINS_REPO", "Siamking672/Jeweled-Sword-Zelretch-Plugins")
+    PLUGINS_REPO = getenv("PLUGINS_REPO", "Siamking672/Zelretch-Plugins")
     PLUGINS_BRANCH = getenv("PLUGINS_BRANCH", "main")
 
     # storage dir: you may or may not edit
     DWL_DIR = "./downloads/"
     TEMP_DIR = "./temp/"
-    DATABASE_NAME = getenv("DATABASE_NAME", "JeweledSwordZelretch")
+    DATABASE_NAME = getenv("DATABASE_NAME", "Zelretch")
     CHROME_BIN = getenv("CHROME_BIN", "/usr/bin/chromium")
     CHROME_DRIVER = getenv("CHROME_DRIVER", "/usr/bin/chromedriver")
     FONT_PATH = "./zelretch/resources/fonts/Montserrat.ttf"
@@ -35,7 +35,6 @@ class Config:
     MUTED_USERS = filters.user()
     DEVS = filters.user([1432756163, 1874070588, 1533682758])
     STAN_USERS = filters.user()
-    FORCESUBS = filters.chat()
 
     # Global config: do not edit
     AFK_CACHE = {}

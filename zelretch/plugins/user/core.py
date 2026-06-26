@@ -53,8 +53,8 @@ async def help(client: Client, message: Message):
 @on_message("repo", allow_stan=True)
 async def repo(_, message: Message):
     REPO_TEXT = (
-        "__Main Repo:__ [GitHub](https://github.com/Siamking672/Jeweled-Sword-Zelretch)\n"
-        "__Plugins Repo:__ [GitHub](https://github.com/Siamking672/Jeweled-Sword-Zelretch-Plugins)"
+        "__Main Repo:__ [GitHub](https://github.com/Siamking672/Zelretch)\n"
+        "__Plugins Repo:__ [GitHub](https://github.com/Siamking672/Zelretch-Plugins)"
     )
     await zelretch.edit(message, REPO_TEXT, no_link_preview=True)
 

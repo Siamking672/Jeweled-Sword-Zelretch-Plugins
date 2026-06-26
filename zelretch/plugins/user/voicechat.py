@@ -19,7 +19,7 @@ async def startvc(client: Client, message: Message):
     if len(message.command) > 1:
         call_name = await zelretch.input(message)
     else:
-        call_name = "Jeweled Sword Zelretch VC"
+        call_name = "Zelretch VC"
 
     hell = await zelretch.edit(message, "Starting Voice Chat...")
     try:
@@ -97,7 +97,7 @@ HelpMenu("voicechat").add(
     "startvc",
     "<vc name (optional)>",
     "Start a voice chat in the group with the given name (optional)",
-    "startvc Jeweled Sword Zelretch VC",
+    "startvc Zelretch VC",
     "Only admins with manage voice chats permission can use this command.",
 ).add(
     "endvc",

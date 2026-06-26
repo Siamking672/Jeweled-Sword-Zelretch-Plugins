@@ -100,7 +100,10 @@ async def gen_bot_help_buttons() -> list[list[InlineKeyboardButton]]:
 def start_button() -> list[list[InlineKeyboardButton]]:
     return [
         [
+            InlineKeyboardButton("Session 🚀", "session:menu"),
             InlineKeyboardButton("⚙️ Help", "help_data:bothelp"),
+        ],
+        [
             InlineKeyboardButton("Source 📦", "help_data:source"),
-        ]
+        ],
     ]

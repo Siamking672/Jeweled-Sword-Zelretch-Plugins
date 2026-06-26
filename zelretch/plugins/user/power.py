@@ -17,7 +17,7 @@ async def restart_bot(_, message):
 async def shutdown_bot(_, message):
     await zelretch.edit(
         message,
-        "**[ ⚠️ ]** __Jeweled Sword Zelretch is now offline. Start the Docker container again to bring it back online.__",
+        "**[ ⚠️ ]** __Zelretch is now offline. Start the Docker container again to bring it back online.__",
     )
     try:
         await restart(shutdown=True)
