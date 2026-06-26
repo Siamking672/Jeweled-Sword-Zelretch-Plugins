@@ -1,26 +1,30 @@
 ---
-title: Jeweled Sword Zelretch
-emoji: 🗡️
-colorFrom: purple
-colorTo: indigo
+title: Jeweled Sword Zelretch Plugins
+emoji: 💎
+colorFrom: indigo
+colorTo: purple
 sdk: docker
 pinned: false
 license: gpl-3.0
 ---
 
-# Jeweled Sword Zelretch
+# Jeweled Sword Zelretch Plugins
 
-Docker-only deployment wrapper for **Jeweled Sword Zelretch Plugins**.
+Plugin source repository for **Jeweled Sword Zelretch**.
 
-This repository intentionally stays small. It downloads the plugin repository at container startup and runs the bot from that source tree.
-
-## Default plugin repository
+The main wrapper repository downloads this repo by default:
 
 ```text
 Siamking672/Jeweled-Sword-Zelretch-Plugins
 ```
 
-Override it with `PLUGINS_REPO` or `PLUGINS_ZIP_URL` when needed.
+## Runtime stack
+
+- Python 3.11
+- Kurigram installed through `kurigram`
+- Pyrogram-compatible import namespace: `from pyrogram ...`
+- MongoDB through Motor
+- Docker-only deployment
 
 ## Required variables
 
@@ -85,7 +89,23 @@ Stop:
 docker compose down
 ```
 
+## Plugin template
+
+```python
+from . import HelpMenu, on_message, zelretch
+
+
+@on_message("hii")
+async def hi(_, message):
+    await zelretch.edit(message, "Hello!")
+
+
+HelpMenu("hii").add(
+    "hii", None, "Says hello."
+).done()
+```
+
 ## Notes
 
-- Kurigram is installed through the `kurigram` package. The code keeps `from pyrogram ...` imports because Kurigram is a drop-in replacement that exposes the Pyrogram-compatible namespace.
+- Forced hardcoded channel auto-join remains removed.
 - The GPL license file is retained.
